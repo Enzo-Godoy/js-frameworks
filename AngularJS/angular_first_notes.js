@@ -1,4 +1,3 @@
-
 <div id="ctrl-as-exmpl" ng-controller="SettingsController1 as settings"> 
   <label>Name: <input type="text" ng-model="settings.name"/></label>
   <button ng-click="settings.greet()">greet</button><br/> 
@@ -29,7 +28,6 @@
   </ul>
 </div> 
 
-
 <!-- trying to make one different by using products info --> 
 <div id="product-example" ng-controller="ControllerSome as controllerSome"> 
   <label>Product : <input type="text" ng-model="controllerSome"/></label> 
@@ -47,10 +45,9 @@
     </li> 
     <li><button ng-click="controllerSome.addProduct()">Add</button></li> 
   </ul>
-</div>
+</div>  
 
-  
-
+<!-- @Google default sample --> 
 <div id="ctrl-as-exmpl" ng-controller="SettingsController1 as settings">
   <label>Name: <input type="text" ng-model="settings.name"/></label>
   <button ng-click="settings.greet()">greet</button><br/>
@@ -68,8 +65,6 @@
     <li><button ng-click="settings.addContact()">add</button></li>
  </ul>
 </div>
-
-<!-- Sample form angular JS documentation --> 
 
 
 
