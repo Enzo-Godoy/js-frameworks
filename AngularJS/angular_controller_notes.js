@@ -113,7 +113,7 @@ controllerProduct.prototype.addProduct() {
   <button ng-click="controllerSome.welcome()">Welcome</button><br /> 
   Product Details : 
   <ul> 
-    <li ng-repeat="product in controllerSome.product"> 
+    <li ng-repeat="product in controllerSome.productList"> 
       <select ng-model="controllerSome.type" aria-label="Product info" id="select_{{$index}}">
         <option>code</option> 
         <option>email</option> 
