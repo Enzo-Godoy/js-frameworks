@@ -93,29 +93,77 @@ according to the status of the form field :
 * ng-dirty 
 * ng-pending 
 * ng-pristine 
+
+Data Binding in AJS is the synchronization between the model and the view. 
+
+Data Model : Is a collection of data available for the application. 
 --> 
 
+<script> 
+	var app = angular.module('myApp', []); 
+	app.controller('myCtrl', function($scope) { 
+		$scope.firstname = "John" ; 
+		$scope.lastname  = "Doe"; 
+	}); 
+</script>
 
 
+<!-- 
+HTML container where AJS application is displayed, is called the view. 
+The view has acces to the model, several ways of displaying model data in the view, 
+as we have seen until now. 
+
+ng-bind (directive) : bind the innerHTML of the element to the specified model property. 
+
+<p ng-bind="firstname"></p> 
+	or 
+<p>First Name: {{ firstname }}</p> 
+
+We use 'ng-model' directive to bind data from the model to the view on HTML controls(input, select, textarea) 
+<input ng-model="firstname"> 
+ 
+ When the data in the model changes, the view reflects the change, and when data in the view changes, the model
+ is updated as well. 
+
+--> 
+
+<html> 
+..
+<div ng-app="myApp" ng-controller="myCtrl">
+	Name: <input ng-model="firstname"> 
+	<h1>{{ firstname }}</h1> 
+</div> 
+<script> 
+	var app = angular.module('myApp', []); 
+	app.controller('myCtrl', function($scope) {
+		$scope.firstname = "John"; 
+		$scope.lastname =  "Doe"; 
+	}); 
+</script> 
+..
+</html>
 
 
+<!-- 
+Applications inAJS are controlled by controllers. 
 
+Due to the binding betweent model-view, the controller is separated from the view, 
+and simply contrate on the model data. 
+	The view still will reflect any changes made in it. 
+--> 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+<html> 
+..
+	<div ng-app="myApp" ng-controller="myCtrl"> 
+		<h1 ng-click="changeName()">{{ firstname }}</h1> 
+	</div> 
+	<script> 
+	var app = angular.module('myApp', []); 
+		$scope.firstname = "John";
+		$scope.changeName = function() { 
+			$scope.firstname = "Nelly";
+		}
+	}); 
+</script>
+..
+</html> 
