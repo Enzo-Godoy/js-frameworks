@@ -157,6 +157,128 @@ AJS - Controllers AJS applications.  (ng-controller)
 </html>
 
 
+<!-- 
+Expression ways of write them : 
+	expression way one : written in double braces : {{ expression }} 
+	expression way two : written inside a directive : ng-bind="expression" 
+This expression are renderized(?. not sure if the word applies. and result it's returned as output. 
+
+Expressions can contains literals, operators, and  variables. 
+e.g : 
+	{{ 5 + 5 }} 
+		or 
+	{{ firstName + "" + lastName }} 
+--> 
+
+<!DOCTYPE html> 
+<html> 
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script> 
+<body>
+	<div ng-app=""> 
+		<p>My first expression: {{ 5 + 5 }}</p> 
+	</div>
+</body> 
+</html> 
+
+<!-- 
+If we remove the ng-app directive the expression it won't be resolved. 
+Just as to now, by my current understanding, the ng-app it's linking the default application
+module from the api imported through 'script src' without the directive ng-app="" 
+no module it's linked and this way it doesn't understand how to manipulate any syntax like a ng-directives 
+ #Check-mate
+ 
+ e.g : 
+--> 
+
+<!DOCTYPE html> 
+<html> 
+<script src="scr://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<body> 
+	<div> 
+		<p>My first expression: {{ 5 + 5 }}</p> 
+	</div> 
+</body>
+</html> 
+
+<!-- 
+	## It can be applied to styles, awesome!! 
+--> 
+
+
+
+<div ng-app="" ng-init="myCol='lightblue'"> 
+<input style="background-color:{{myCol}}" ng-model="myCol"> 
+
+<!-- Order Details, render two ways-->
+<div ng-app="" ng-init="quantity=1;cost=5"> 
+	<p>Total in dollar: {{ quantity * cost }}</p> 
+</div> 
+<div ng-app="" ng-init="quantity=1;cost=5"> 
+	<p>Total in dollar: <span ng-bind="quantity * cost"></span></p> 
+</div> 
+
+<!-- Product Details, render two ways --> 
+<div ng-app="" ng-init=productQuantity=3;productPrice=23"> 
+	<p>Your purchase it's about : {{ "$" + ( productQuantity * productPrice) }} 
+</div> 
+<div ng-app="" ng-init="productQuantity=3;productPrice=23">
+	<p>Your purchae it's about : <span ng-bind="productQuantity * productPrice"></span></p> 
+</div> 
+ 
+<!-- Person details, render two ways --> 
+<div ng-app="" ng-init="firstName='Jhon';lastName='Doe'"> 
+	<p>The name is {{ firstName + " " + last Name }}</p> 
+</div 
+<div ng-app="" ng-init="firstName='John';lastName='Doe'"> 
+	<p>The name is <span ng-bind="firstName + '' + lastName"></span></p> 
+</div> 
+
+<!-- Person details, render two ways using an object as initialized value--> 
+<div ng-app="" ng-init="person={firstName: 'John', lastName:'Doe'}">
+	<p>The name is {{ person.lastName }}</p> 
+</div> 
+
+<div ng-app="" ng-init="person={firstName: 'John', lastName: 'Doe' }">
+	<p>The name is <pan ng-bind="person.lastName"></span></p>
+</div> 
+
+<!-- Tools details, render two ways using an object as initialized value --> 
+<div ng-app="" ng-init="toolsSet={firstTool : 'Skewdriver', secondTool : 'Hammer'">
+	<p>Your set of tools are : {{ toolsSet.firstTool }}, {{ toolsSet.secondTool }}</p> 
+</div> 
+<div ng-app="" ng-init="toolsSet={firstTool : 'Skedriver', secondTool : 'Hammer'"> 
+	<p>Your set of tools are : <span ng-bind="toolsSet.firstTool + ', ' + toolsSet.secondTool"></span></p> 
+</div> 
+
+<!-- arrays details, render two ways-->
+<div ng-app="" ng-init="points=[1,15,19,2,40]"> 
+	<p>The third result is {{ points[2] }}</p> 
+</div> 
+<div ng-app="" ng-init="points="[1,15,19,2,40"> 
+	<p>The third result is <span ng-bind="points[2]"></span></p> 
+</div> 
+
+<!-- Sample of arrays with animals --> 
+<div ng-app="" ng-init="animals=['Snake', 'Bear', 'Cocodrile' , 'Zebra']"> 
+	<p>The second animal it's : {{ animals[1] }}</p> 
+</div>
+<div ng-app="" ng-init="animals=['Snake', 'Bear', 'Cocodrile' , 'Zebra']">
+	<p>The second animal it's : <span ng-bind="animals[1]"</span></p>
+</div>	
+
+
+<!-- 
+ AJS can be written inside HTML, 
+ AJS doesn't suppoert conditionals, loops, and exceptions. 
+ Also AJS support filters. 
+ ## End of angular expression - Page. 
+--> 
+
+
+
+
+
+
 
 
 
