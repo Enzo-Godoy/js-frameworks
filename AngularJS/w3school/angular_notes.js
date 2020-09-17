@@ -94,6 +94,7 @@ use data-ng-directive
 <!-- 
 AngularJS modules defines AngularJS applications. (ng-app)
 AJS - Controllers AJS applications.  (ng-controller)
+--> 
 
 <div ng-app="myApp" ng-controller="myCtrl"> 
 	First Name: <input type="text" ng-model="firstName"><br> 
