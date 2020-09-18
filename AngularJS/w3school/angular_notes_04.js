@@ -170,22 +170,3 @@ by registering a new filter fatory function with our  module :
 ..
 </html>
 			
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
