@@ -191,3 +191,105 @@ ASP.NET RAZOR - SQL Lite, Return : json ;
 /* 
 Cross-Site HTTP Requests 
 Al request for from a different server than the requester same. 
+Cross-Site HTTP request from scripts are restricted in moder web Browsers .
+
+This shouldn't be used but let use skip that restriction 
+
+## PHP 
+header("Access-Control-Allow-Origin");  -->> Just a Header prop
+
+-- Sample Server Code PHP and MySQL 
+<?php 
+	header("Access-Control-Allow-Origin: *"); 
+	header("Content-Type: application/json; charset=UTF-8"); 
+
+	$conn = new mysqli("myServer", "myUser", "myPassword", "Northwind"); 
+	$result = $conn ->query("SELECT CompanyName, City, Country FROM Customers"); 
+
+	$outp = ""; 
+	while($rs = $result->fetch_array(MYSQLI_ASSOC)) {
+		if ($outp != "") { $outp .= ",";} 
+		$outp .= '{"Name":"'   . $rs["CompanyName"] . '",';
+		$outp .= '"City":"'    . $rs[$"City"]       . '",'; 
+		$outp .= '"Country":"' . $rs["Country"]     . '"}';
+	}
+	$outp ='{"records:"[' .$outp. ']}'; 
+	$conn->close(); 
+	echo($outp); 
+?> 
+
+-- Sample Server Code PHP and MS Access 
+<?php 
+	header("Access-Control-Allow-Origin: *"); 
+	header("Content-Type: application/json; charset=ISO-8859-1"); 
+
+	$conn = new COM("ADODB.Connection"); 
+	$conn->opwn("PROVIDER=Microsoft.Jet.OLEDB.4.0;Data Source=Northwind.mdb"); 
+
+	$rs = $conn->execute("SELECT CompanyName, City, Country FROM Customers"); 
+
+	$outp = ""; 
+	while (!$rs->EOF){
+		if($outp != "") {$outp .= ",";}
+		$outp .= '{"Name":"'   . $rs["CompanyName"] . '",'; 
+		$outp .= '"City":"'    . $rs["City"]        . '",'; 
+		$outp .= '"Country":"' . $rs["Country"]     . '"}'; 
+		$rs->MoveNext();
+	}
+	$outp = '{"records":['$outp.]}'; 
+	$conn->close(); 
+	echo ($outp); 
+?>
+
+
+-- Sample Server Code ASP.NET, VB and MS Access 
+<%@ Import Namespace="SYstem.IO"%> 
+<%@ Import Namespace="System.Data"%> 
+<%@ Import Namespace="System.Data.OleDb"%>
+<%@ 
+	Response.AppendHeader("Access-Control-Allow-Origin", "*") 
+	Response.AppendHeader("Content-Type", "application/json") 
+	Dim conn As OleDbDataAdapter 
+	Dim objAdapter As OleDbDataAdapter 
+	Dim objTable As DataTable 
+	Dim objRow As DataRow 
+	Dim objDataSet As New DataSet() 
+	Dim outp 
+	Dim c 
+	conn = New OledbConnection("Provider=Microsdoft.Jet.OLEDB.4.0;data source=Northwind.mdb") 
+	objAdapter = New OldbDataAdapter("SELECT CompanyName, City, Country FROM Customers", conn) 
+	objAdapter.Fill(objDataSEt, "myTable") 
+	objTable = objDataSet.Tables("myTable) 
+
+	outp = "" 
+	c = chr(34) 
+		for each x in objTable.Rows 
+			if outp <> "" then outp = outp & ","
+			outp = outp & "{" & c & "Name"    & c & x("CompanyName") & c & "," 
+			outp = outp &       c & "{" & c & "City"    & c & x("City) & c & "," 
+			outp = outp &     & c & "{" & c & "Country" & c & x("Country") & c & "}" 
+		next 
+	outp = "{" & c & "records" & c & ":[" & outp & "]}" 
+	response.write(outp) 
+	conn.close 
+%> 
+
+
+-- Sample Server Code ASP.NET/Razor, C# and SQL Lite (I like more this than the before)
+@{
+	Response.AppendHeader("Access-Control-Allow-Origin", "*") 
+	Response.AppendHeader("Content-type", "application/json") 
+	var db = Database.Open("Northwind"); 
+	var query = db.Query("SELECT CompanyName, City, Country FROM Customers"); 
+	var outp = "" 
+	var c = chr(34)
+}
+	@foreach(var row in query){ 
+		if(outp != "") {outp = outp + ","}
+			outp = outp + "{" + c + "Name"	  + c + ":" + c + @row.CompanyName + c + ","
+			outp = outp + 		c + "City" 	  + c + ":" + c + @row.City		   + c + ","
+			outp = outp +       c + "Country" + c + ":" + c + @row.Country     + c + "}"
+}
+outp = "{" + c + "records" + c + ":[" + outp + "]}" 
+@outp 
+
