@@ -236,4 +236,7 @@ app.controller('myCtrl', function($scope, $htpp) {
 	</tr>
 </table> 
 
- 
+ /* 
+ $http is an XMLHttpRequest object for requesting external data. 
+ $http.get() it's just a property of that object, it seams more clear now
+ */
