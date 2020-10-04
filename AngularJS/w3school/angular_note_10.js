@@ -220,9 +220,65 @@ app.config(function($routeProvider){
 		});
 }); 
 app.controller("londonCtrl", function($scope){
-	$scope.msg = "I love London"; 
+	$scope.message = "I love London"; 
 }); 
 app.controller("parisCtrl", function($scope) {
-	$scope.msg ="I love paris";
+	$scope.message ="I love paris";
 });
+
+
+
+-- Sample of html include in controllers of countries (London)
+<h1>London</h1> 
+<h3>London is the capital of England.</h3> 
+<p>Just another text related</p> 
+<p>{{ message }}</p> 
+
+-- Sample of html include in controllers of countries (Paris)
+<h>Paris</h1> 
+<h3>Paris is the capital of  France</h3> 
+<p>{{ message }}</p>
+
+
+-- Sample with template within the controller, added by a router being ($routeProvider)
+.. 
+	var app = angular.module("myApp", ["ngRoute"]);
+	app.config(function($routeProvider) {
+		$routeProvider 
+			.when("/", { 
+				template : "<h1>Title main</h1><p>Some description 01</p>"
+			})
+			.when("/fruit1", { 
+				template : "<h1>Fruit1</h1><p>Some description 01</p>"
+			})
+			.when("/fruit2", { 
+				template : "<h1>Fruit2</h1></p>Some description 02</p>"
+			})
+	}); 
+.. 
+
+
+-- Sample with 'otherwise' kind of default path for none '.when' condition matched 
+.. 
+	var app = angular.module("myApp",["ngRoute"]); 
+	app.config(function($routeProvider) {
+		$routeProvider 
+			.when("/", { 
+				template : "<h1>Title main</h1><p>Some description 01</p>"
+			})
+			.when("/someDesc02", {
+				template : "<h1>Title Desc02</h1><p>Some description 02</p>"
+			})
+			.when("/someDesc03", { 
+				template : "<h1>Title Desc03</h1><p>Some descriptionn 03</p>"
+			})
+			.otherwhise( {
+				template : "<h1>Default none Case</h1><p>Description for default path</p>"
+			})
+	}); 
+.. 
+
+
+
+
 
