@@ -1,3 +1,7 @@
+Concept : JQUery notes 
+source : https://www.w3schools.com/jquery
+
+
 -- Basic sample of JQuery 
 $(document).ready(function() {
 	$("p").click(function(){ 
