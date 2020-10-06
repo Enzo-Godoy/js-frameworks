@@ -1,364 +1,226 @@
-Concpts : Jquery notes 
-source: https://www.w3schools.com/jquery
+-- Sample with a hover functionlity over an element with id 'p1' 
+$("#p1").hover(function(){
+	alert("Some random text!");
+}, function(){ 
+	alert("Some random text02!");
+}); 
+
+
+
+-- Sample of the focus() function being performed to an HTML form field 
+..
+$("input").focus(function(){ 
+	$(this).css("background-color","#ccccc");
+});
+
+-- Sample of the blur() function being performed to an HTML form field 
+.. 
+$("input").blur(function(){ 
+	($this),css("background-color", "#fffff");
+});
+
+-- Sample of the on() method attached one or more even handlers for an element 
+..
+$("p").on({ 
+	mouseenter: function(){ 
+		$(this).css("background-color", "lightgray");
+	}, 
+	mouseleave: function(){
+		$(this).css("background-color", "orange");
+	},
+	click: function(){
+		$(this).css("background-color", "yellow");
+	}
+});
+
 
 /* 
-stop()  is used to stop an animation or effect before it is finished 
+JQuery 
+	* Tutorial 
+	* Effects 
+	* HTML 
+	* Traversing 
+	* AJAX 
+	* Misc 
+	* Examples 
+	* References 
+*/
 
-stop() >> Can affect effect functions, sliding, fading and custom animations 
+-- Sample hiding and showing elements  
+.. 
+$("#hide").click(function(){ 
+	$("p").hide(); 
+});
+$("#show").click(function(){ 
+	$("p").show();
+}); 
+$("#hide").click(function(){ 
+	$("p").hide();
+}); 
+$("#non-visible").click(function(){ 
+	$("div").hide();
+});
+$("#visible").click(function(){ 
+	$("div").show();
+}); 
 
-syntax : 
-$(selector).stop(stopAll, goToEnd); 
 
-stopAll >> specify if all the animations that follows should be queue and cleared or not. 
-goToEnd >> If the animation should finished or it's aborted.
 
-default values for both are false.
- 
+/* 
+ hide()/show() functions cant take up to 2 parameters [speed, callback]. 
+ Speed can be indicated using : slow, fast , miliseconds 
+	
+	$(select).hide(speed, callback); 
+	$(select).show(speed, callback);
+
+Same pattern it´s followed by a toggle() function 
+Same pattern with fade function family 
+ Fade Function Family : 
+ 	* fadeIn() 
+ 	* fadeOut() 
+ 	* fadeToggle() 
+ 	* fadeTo()
+
+*/ 
+
+-- Sample '<p>' being hide due to a button has triggered by a click an event 
+..
+$("button").click(function(){ 
+	$("p").hide(1000);
+}); 
+
+
+-- Sample of using a toggle() function 
+.. 
+$("button").click(function(){ 
+	$("p").toggle();
+});
+
+-- Sample of using fadeIn() 
+$("button").click(function(){ 
+	$("#div1").fadeIn(); 
+	$("#div2").fadeIn("slow"); 
+	$("#div3").fadeIn(3000);
+}); 
+
+-- Sample of using fadeOut() 
+$("button").click(function(){ 
+	$("#div1").fadeOut();
+	$("#div2").fadeOut("slow"); 
+	$("#div3").fadeOut(3000);
+}); 
+
+-- Sample with fadeToggle() 
+$("button").click(function(){ 
+	$("#div1").fadeToggle(); 
+	$("#div2").fadeToggle("slow"); 
+	$("#div3").fadeToggle(3000);
+}); 
+
+/* 
+	The function fadeTo() has a variation in it´s args from the previous mentioned 
+	We add after 'speed', as a second parameter the 'opacity' and then after that the callback function 
+	$(selector).fadeTo(speed, opacity, callback);
+*/
+
+$("button").click(function(){ 
+	$("#div1").fadeTo("slow", 0.15); 
+	$("#div2").fadeTo("slow", 0.4);
+	$("#div3").fadeTo("slow", 0.7);
+}); 
+
+
+/* 
+Functions from the slide family : 
+ * slideDown() 
+ * slideUp() 
+ * slideToggle() 
+
  */ 
 
- -- Sample with stop afectin an element with id "panel" 
- $("#stop").click(function(){
- 	$("#panel").stop();
+ -- Sample with slideDown() 
+ $("#flip").click(function(){ 
+ 	$("#panel").slideDown();
+ });
+
+ -- Sample with slideUp() 
+ $("#flip").click(function(){ 
+ 	$("#panel").slideUp();
  }); 
 
+ -- Sample with slideToggle() 
+ $("#flip").click(function(){ 
+ 	$("#panel").slideToggle();
+ }); 
 
-/* 
-Ok, so effects seems to be executed asynchrnously JS statementa s we know are executed line by line. 
-But these execution line by line not necesarlly means wait for the execution of the "effects" 
+ /* 
+ JQuery Animations 
+ we can do animation by using the animate() method 
 
+ By default all HTML elements have a static position, and cannot be moved. 
+ To avoid this static positon we need to first set position-prop to : relative, fixed, absolute 
+ Any of these three it should work 
 
-A callback can be passed as second parameter to represent the ending of the effect 
+Another important thing to remember is that we must use camelCase for the setting of properties, 
+hungarian it won´t work.
 
-syntax as previous showed before :
-$(select).hide(speed, callback); 
-*/
+Also we can specify property´s animaytion values as (show, hide, toogle)
 
--- Sample with a callback function 
+Interesting JQuery uses a Queue functionality . So all the animation are performed one by one. 
+
+ */ 
+
+ -- Sample of a basic animate setting 
+ .. 
+ $("button").click(function(){ 
+ 	$("div").animate({left: '250px'});
+ }); 
+
+-- Sample by using multiple properties added to the animation 
 $("button").click(function(){ 
-	$("p").hide("slow", function(){ 
-		alert("The paragraph is now hidden");
+	$("div").animate({ 
+		left: '250px'; 
+		opacity: '0.5'; 
+		height: '150px', 
+		width: '150px'
 	});
 }); 
 
--- Sample without a calback synchronous 
-$("button").click(function(){ 
-	$("p").hide(1000); 
-	alert("The paragraph is now hidden");
-}); 
-
-
-
-/* 
-Chaining of effects can be performed  this way multiple eefect can be chained one after other 
-More performant(?) due to an avoided necesity of find the element affected
-*/ 
--- Sample with chaining 
-$("#p").css("color", "red").slideUp(2000).slideDown(2000); 
-
--- Same example but with another identation 
-$("#p").css("color", "red")
-	.slideUp(2000) 
-	.slideDown(2000); 
-
-/* 
-JQuery has many DOM related methods to access and manipulate elements 
-and attributes 
-
-DOM = Document Object Model 
-
-DOM = Is a platform and lenguage-neutral interface that allows programs and scripts 
-to dynamically access and update the content, sctructure, and style of a document 
-
-Three mothods useful : 
-
-text() - Manipulate text from a selected element 
-html() - Manipulat elements from an HTML doc 
-val()  - Manipulate values from forms 
-attr() - Manipulate attributes values
-
-*/ 
-
--- Sample with text()  methods 
-$("#btn1").click(function() {
-	alert("Text: " + $("#test").text());
-});
-
--- Sample with html()  methods  
-$("#btn2").click(function(){ 
-	alert("HTML: " + $("#test").html());
-}); 
-
--- Sample with val() methods 
-$("#btn1").click(function(){ 
-	alert("Value: " + $("#test").val());
-}); 
-
--- Sample with attr() 
-$("button").click(function(){ 
-	alert($("#w3s").attr("href"));
-});
-
-
-<! ================================================= !>
-
--- Sample setting by using text() 
-$("#btn1").click(function(){ 
-	$("#test1").text("Hello World!");
-});
-
--- Sample setting by using html() 
-$("#btn2").click(function(){ 
-	$("#btn2").html("<b>Hello World!</b>");
-}); 
-
--- Sample settign by using val() 
-$("#btn3").click(function() {
-	$("#test3").val("Dolly Duck");
-}); 
-
-
-/* 
-All of the threes methods 
-text(), html(), val(), attr() has a calback function with two parameters 
-The index of the current element in the list of elements and the original (old) value. 
-*/ 
-
--- Sample of text() with parameters for its callback 
-$("#btn1").click(function(){ 
-	$("#test1").text(function(i, origText) {
-		return "Old text:" + origText + "New text: Hello World! (index: " + i + ")"; 
-	}); 
-}); 
-
--- Sample of html() with parameters for its callback 
-$("#btn2").click(function(){ 
-	$("#test2").html(function(i, origText){
-		return "Old html:" + origText + " New html: Hello <b>World!</b> (index: " + i + ")";
+-- Sample of animate() that uses relative values 
+.. 
+$("button").click(function(){
+	$("div").animate({
+		left: '250px', 
+		height: '+=150px', 
+		width: '+=150px'
 	});
 }); 
 
 
--- Sample setting the attribute in a link : 
+-- Sample of using predefined values(toogle, hide, show) 
+.. 
 $("button").click(function(){ 
-	$("#w3s").attr("href", "https://www.w3schools.com/jquery/");
-}); 
-
--- Sample settings multiple attributes in a link 
-$("button").click(function(){ 
-	$("#w3s").attr({
-		"href": "https://www.w3schools.com/jquery/", 
-		"title": "W3Schools JQuery Tutorial"
+	$("div").animatie({
+		heigth: 'hide'
 	});
 });
 
 
--- Sample of Callback function for attr method 
+-- Sample with that represent multiple properties to be queued (? , add to the queue for simplicity 
+.. 
 $("button").click(function(){ 
-	$("#w3s").attr("href", function(i, origValue){
-		return origValue + "/jquery/";
-	});
-}); 
-
-/* 
-JQuery has four methods to implements an added functionality 
-append(), preppend(), after(), before(). 
-
-Boths append(), prepend() hast the ability to receive multiple arguments as elements 
-to be added. 
-
-E.G : 
- 
- ..
- 	$("div").append("<p>Some text</p>", "<p>Some text 02</p>", "<p>Some text n </p>");
- 	$("div").prepend("<p>Some text</p>", "<p>Some text 02</p>", "<p>Some text n </p>");
-
-*/ 
-
--- Sample with append() (Insertion at the end)
-.. 
-	$("p").append("Some appended text"); 
-
--- Sample with prepend() (Insertion at the beginning) 
-.. 
-	$("p").prepend("Some prepended text"); 
-
-/* 
-	## We can do the multiple insertion by mixing html, js, jquery as follow 
-*/
-function appendText(){ 
-	var txt1 = "<p>Text.</p>";
-	var txt2 = $("<p></p>").text("Text.");
-	var txt3 = document.createElement("p");
-	txt3.innerHTML = "Text."; 
-	$("body").append(txt1, txt2, txt3); 
-}
-
-// Also some operation of adding content can be done by using after(), before() function 
-
--- Sample with after() & before()
-$("img").after("Some text after"); 
-$("img").before("Some text before");
-
-
-// Same as well, these functions can take many parameters as multiple elements to be used. 
--- Sample with after() multiple Elements 
-function afterText(){ 
-	var txt1 = "<b>I </b>"; 
-	var txt2 = $("<i></i>").text("love"); 
-	var txt3 = document.createElement("b"); 
-	txt3.innerHTML = "JQuery!"; 
-	$("img").after(txt1, txt2, txt3);
-}
-
--- Sample with before() multiple elements 
-function beforeText(){ 
-	var txt1 = "<>Some other text</b>"; 
-	var txt2 = $("<i></i>").text("Content random"); 
-	var txt3 = document.createElement("p"); 
-	txt3.innerHTML = "I´m a paragraph"; 
-	$("#picture").before(txt1, txt2, txt3);
-}
-
-
-/* 
-In order to remove existing HTML elements we use 
-remove() >> Remove the node and its childrens 
-empty()  >> Removes the child node from the element selected 
-
- Also we can add one parameters indicating the elements to be deleted from remove(); 
-
-*/ 
-
--- Sample with remove() 
-.. 
-	$("#div1").remove(); 
-
--- Sample with empty 
-.. 
-	$("#notice-day").empty();
-
--- Sample of remove an element by class identifier 
-$("p").remove(".className"); 
-
--- Sample of remove multiple elements by class identifiers
-$("p").remove(".test, .demo"); 
-
-
-/* 
-CSS has  multiple manipulation function from JQuery to be used  
-Some of them 
-
-addClass()    >> Add classes to an element 
-removeClass() >> Removes classes from an element
-toggleClass() >> Toggles between adding/removing classes from an element
-css()  >> Sets or Returns the style props fron an element
-*/
-
--- Sample of a class existent to be added by AddClass 
-.. 
-	.important{font-weight:bold;font-size:xx-large}
-	.blue{color:blue}
-.. 
-	$("button").click(function(){ 
-		$("h1, h2, p").addClass("blue"); 
-		$("div").addClass("important");
+	var div = ($"div");
+	div.animate({height: '300px', opacity = '0.4'}, "slow");
+	div.animate({width:  '300px', opacity = '0.8'}, "slow");
+	div.animate({height: '100px', opacity = '0.4'}, "slow");
+	div.animate({width:  '100px', opacity = '0.8'}, "slow");
 });
 
-
--- Sample as before but adding multiple classes 
-.. 
-	.important{font-weight:bold;font-size:xx-large}
-	.blue{color:blue}
-.. 
-	$("button").click(function(){  
-		$("#div1").addClass("important blue");
+-- Sample with two animation being executed in order 
+$("button").click(function(){ 
+	var div = $("div"); 
+	div.animate({left: '100px'}, "slow");
+	div.animate({fontSize: '3em'}, "slow");
 });
-
--- Sample of removeClass() function 
-$("button").click(function(){ 
-	$("h1, h2, p").removeClass("blue");
-}); 
-
--- Sample of toggleClass() function
-$("button").click(function(){ 
-	$("h1, h2, p").toggleClass("blue");
-});
-
-
-
--- Sample of value returned from a prop CSS (Just pass one parameter)
-.. 
-	$("p").css("background-color");
-
--- Sample of a value being setted for props CSS (Two args are required) 
-..
-	$("p").css("background-color", "yellow"); 
-
--- Sample with setting multiple values to css props 
-.. 
-	$("p").css({"background-color": "yellow", "font-size": "200%"}); 
-
-
-/* 
-In order to manipulate dimensions from a browser window (padding, margin, space fill in and s) 
-We use the Dimension methods : 
-
-- width()  >> Returns or set the width of an element
-- height() >> Returns or set the height of an element
-- innerWidth() 
-- outerWidth()
-- innerHeight() 
-- outerHeight() 
-
-Boths  (width(), height() ) excludes padding, border and margin.
-innerWidth(), innerHeight() >> includes padding
-outerWidth(), outerHeight() >> includes padding & border 
-outerWidth(true), outerHeight(true) >> includes padding & border & margin
-
-*/ 
--- Sample of getting values of 'width' and 'height' from elements 
-$("button").click(function(){ 
-	var txt = ""; 
-	txt += "Width: " + $("#div1").width() +"</br>"; 
-	txt += "Height: " + $("#div1").height();
-	$("#div1").html(txt);
-}); 
-
-
--- Sample of getting values of outerWidth(), outerHeight() from elements 
-$("button").click(function(){ 
-	var txt = ""; 
-	txt += "Outer width:  " + $("#div1").outerWidth() + "</br>"; 
-	txt += "Outer height: " + $("#div1").outerHeight(); 
-	$("#div1").html(txt);
-}); 
-
--- Sample of getting values from outerWidth(true)/outerHeight(true) 
-$("button").click(function(){ 
-	var txt = ""; 
-	txt += "Outer width: with margin" + $("#div1").outerWidth(true) + "</br>"; 
-	txt += "Outer heigth: with margin" + $("#div1").outerHeigth(true) + "</br>"; 
-	$("#div1").html(txt);
-}); 
-
--- Sample of getting the values width/height from the document and window (browser viewport) 
-$("button").click(function(){ 
-	var dimensionDocument = ""; 
-	var dimensionWindow   = ""; 
-	dimensionDocument += "Document width/height: " + $(document).width() + "x" + $(document).height() + "\n"; 
-	dimensionWindow   += "Window width/height: " + $(window).width() + "x" + $(window).height(); 
-	alert(dimensionDocument); 
-	alert(dimensionWindow);
-}); 
-
--- Sample of setting the width/height to an element
-$("button").click(function(){ 
-	$("#div1").width(500).height(500);
-}); 
-
-
-
-
-
 
 
