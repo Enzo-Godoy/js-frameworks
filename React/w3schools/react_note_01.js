@@ -140,27 +140,75 @@ ReactDOM.render(myfirstlement, document.getElementById('root'));
 </html> 
 
 
+/*
+Some requirements in order to advance with React : 
+Classes. 
+Arrow Functions.
+Variables(let, const, var). 
+
+ES6 >> Ecma Script 6 (It's a standart of JS conventions made in 2015). 
+
+A Class is a type of function, but insted of using the keyword function to initiatie it, we use the keyword class, and 
+the properties are assigned inside a constructor() method. In order to create an "class inheritance" we should the extends keyword. 
 
 
+The super () method refers to the parent class. 
+BY calling the super() method in the constructor method, we call the parent's constructor method 
+and gets access to the parent's properites and methods. 
 
 
+*/ 
+
+-- Sample of a  class constructor 
+class Car {
+	constructor(name){ 
+		this.brand = name;
+	}
+}
+
+-- Sample Referencing the class constructor in order to create a new object. 
+
+class Car {
+	constructor(name) { 
+		this.brand = name;
+	}
+}
 
 
+mycar = new Car("Ford"); 
 
 
+-- Sample of a Method in a Class 
+class Car {
+	constructor(name) {
+			this.brand = name; 
+	}
+	
+	present(){ 
+		return 'I have a' + this.brand;
+	}
+}
+
+mycar = new Car("Ford"); 
+mycar.present();
 
 
+-- Sample of a class named Model that extends from a class Car 
+class Car {
+	constructor(name) {	this.brand = name; 	}
+	present(){ return 'I have a' + this.brand; }
+}
 
+class Model extends Car {
+	constructor(name, mod) {
+			super(name); 
+			this.model = mod;
+	}
+	
+	show() {
+		return this.present() + ', it is a' + this.model;
+	}
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
+mycar = new Model("Ford", "Mustang"); 
+mycar.show(); 
