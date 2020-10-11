@@ -104,6 +104,21 @@ class Car extends React.Component {
 	}
 }
 
+/* 
+LifeCycle of Components : Each component in React has a lifecycle wich you can monitor and manipulate during its three main phases. 
+
+The three phase are : Mounting, Updating and Unmounting. 
+
+Mounting : Puttings elements into the DOM. 
+		   React has four built-in methods that get called, in this orer : 
+			* constructor()
+			* getDerivedStateFromProps() 
+			* render() 
+			* componentDidMount() 
+		The render() method is required and will always be called, the others are optional and will be called only if we define them. 
+		
+The constructor() method is called before anything else, when the component is initiated, and it is the natural place to set up the initiak
+state and other initial values.
 
 
 
