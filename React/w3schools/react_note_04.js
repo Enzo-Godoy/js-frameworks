@@ -107,58 +107,92 @@ class Car extends React.Component {
 /* 
 LifeCycle of Components : Each component in React has a lifecycle wich you can monitor and manipulate during its three main phases. 
 
-The three phase are : Mounting, Updating and Unmounting. 
+The three phase are :
+* Mounting, 
+* Updating,
+* Unmounting. 
 
 Mounting : Puttings elements into the DOM. 
-		   React has four built-in methods that get called, in this orer : 
-			* constructor()
-			* getDerivedStateFromProps() 
-			* render() 
-			* componentDidMount() 
-		The render() method is required and will always be called, the others are optional and will be called only if we define them. 
+		   React has four built-in methods that get called, when mounting :
+			- constructor()
+			- getDerivedStateFromProps() 
+			- render() 
+			- componentDidMount() 
+
+Updating : When react detects change in the component's state or props. 
+			React has five built-in methods that gets called, when updating : 
+			- getDerivedStateFromProps() 
+			shouldComponentUpdate() 
+			render() 
+			getSnapshotBeforeUpdate() 
+			componentDidUpdate() 
+			
+Unmounting : When a component is removed from the DOM. 
+			React has only one buil-in method that gets called, when unmounting :
+			- componentWillUnmount() 
+			
+Explanation of each Method per stage :
+ * Mounting : 
+		constructor ------------ >> This method is called at first, when the component is initiated, and set up the initial 'state' and other
+						intial values. 
+		getDerivedStateFromProps >> Called right before rendering the elements in the DOM. Here can be set set 'state' object pased on the initial props. 
+		render   --------------- >> Is the method that actuallu outputs the HTML to the DOM. 
+		componentDidMount ------ >> Called after the component is rendered. 
+
+ * Updating : 
+		getDerivedStateFromProps >> First method when a component gets updated. Set state object based on the initial props. 
+		shouldComponentUpdate    >> Method that determines whether React should continue with the rendering or not. 
+		render ----------------- >> Called again when the component gets updates, it has to re-render the HTML to the DOM, with the new changes. 
+		getSnapshotBeforeUpdate- >> We have access to the props and state before the update, Even after the update we can check the values before the update. 
+				//If the method getSnapshotBeforeUpdate is present, we should also include the method 'componentDidUpdate', otherwise we will get an error. 
+	
+		componentDidUpdate ---- >> This method is called after the component is updated in the DOM. 
 		
-The constructor() method is called before anything else, when the component is initiated, and it is the natural place to set up the initiak
-state and other initial values.
+ * Unmounting : 
+		componentWillUnmount -- >> In this method the actions when the component is removed from the DOM, are taken. 
+		
+*/ 
+
+-- Sample with the constructor method called 
+class Header extend React.Component { 
+	constructor(props) {
+		super(props); 
+		this.state = {favoritecolor : "red"};
+	}
+	render() {
+		return (
+			<h1>Some random text {this.state.favoritecolor}</h1>
+		);
+	}
+}
+
+ReactDOM.render(<Header />, document.getElementById('root')); 
 
 
+-- Sample with method getDerivedStateFromProps 
+class Header extends React.Component { 
+	constructor(props) {
+		super(props); 
+		this.state = {favoritecolor : "red"};
+	}
+	static getDErivedStateFromProps(props, state){
+		return {favoritecolor : props.favcol }; 
+	}
+	render() {
+		return (
+			<h1>Some random text {this.state.favoritecolor}</h1>
+		);
+	}
+}
+ReactDOM.render(<Header favcol="yellow"/>, document.getElementById('root')); 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+-- Sample with render method 
+class Header extends React.Component {
+	render() {
+		return (
+			<h1>Some random text of Headers</h1>
+		);
+	}
+}
+ReactDOM.render(<Header />, document.getElementById('root')); 
