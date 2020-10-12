@@ -200,3 +200,4 @@ called the method, which can be the global window object, a HTML button, etc.
  React Event Object : 
  Event handlers have acces to the React event that triggered the function. Without arrow function, the React event object is sent 
  automatically as the last argument when using the 'bind()' method. 
+*/
