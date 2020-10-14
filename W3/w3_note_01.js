@@ -147,159 +147,53 @@ w3.includeHTML call.
 </script> 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+/* 
+Display data functionality >> We use it in order to render data fram our dataset sources. 
+In order to show up the data in an element we select the element as follow : 
+	w3.displayObject(selector); 
+	
+	And within the elements the data it's rendered in closed brackets : 
+	<div id="id01"> 
+		{{firstName}} {{lastName}} 
+	</div>
+
+	The case of use in the samples that follows are usualy an object wich contains our data as the dataset and a list created by html elements
+	wich would be rendering our elements from the object's data extraction. 
+	Cases to be presented : 
+	* Filling a List. 
+	* Filling Check Boxes. 
+	* Filling Classes. 
+	* Filling a Table. 
+	* Filling a <select> Element. 
+	
+*/ 
+
+-- An object to be use as our dataset referred as DS_OBJ in the following examples.
+var myObject = {"customers":[
+	{"CustomerName": "Alfreds Futterkiste", "City": "Berlin", "Country": "Germany"},
+	{"CustomerName":"Around the Horn", "City": "London", "Country": "UK"},
+	{"CustomerName":"B'S Beverages", "City":"London", "Country": "UK"},
+	{"CustomerName":"Blauer See Delikatessen", "City":"Mannheim", "Country": "Germany"},
+	{"CustomerName":"Bon app'", "City": "Marseille", "Country": "France"},
+	{"CustomerName":"Bottom-Dollar Marketse", "City":"Tsawassen", "Country": "Canada"},
+	{"CustomerName": "Chop-shuey Chine", "City":"Bern", "Country":"Switzerland"},
+]};
+
+
+-- sample of filling a DropDown with DS_OBJ 
+..
+<select id="id01"> 
+	<option w3-repear="customers">{{CustomerName}}</option> 
+</select> 
+<script> 
+	w3.displayObject("id01", myObject); 
+</script> 
+
+-- Sample of filling a List with DS_OBJ 
+..
+<ul id="id01"> 
+	<li w3-repeat="customers">{{CustomerName}}</li> 
+</ul> 
+<script>
+	w3.displayObject("id01", myObject); 
+</script> 
