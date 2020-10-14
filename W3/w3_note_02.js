@@ -58,3 +58,122 @@
 <script> 
 	w3.displayObject("id01", {"cars" : ["Volvo", "Ford", "BMW", "Mercedes"]}); 
 </script> 
+
+/* 
+Sample of an Http Request using the w3 library 
+ Generic  :
+ w3.getHttpObject(file.js, function); 
+ Some details : We use this function as an extraction of information. 
+*/
+
+-- Sample of requesting info from a DropDown id01 Obj
+.. 
+	<select id="id01"> 
+		<option w3-repeat="customers">{{CustomerName}}</option> 
+	</select> 
+<script> 
+	w3.getHttpObject("customers.js", myFunction); 
+	
+	function myFunction(myObject) {
+		w3.displayObject("id01", myObject);
+	}
+</script> 
+	
+
+-- Sample of filling a list requesting info id01 Obj
+.. 
+<ul id="id01"> 
+	<li w3-repeat="customers">>{{CustomerName}}</li> 
+</ul> 
+<script> 
+	w3.getHTTPObject("customers.js", myFunction); 
+	
+	function myFunction(myObject) {
+		w3.displayObject("id01", myObject);
+	}
+</script> 
+
+-- Sample of filling a table requesting info from a Table 
+.. 
+<table id="id01"> 
+	<tr> 
+		<th>Customer</th> 
+		<th>City</th> 
+		<th>Country</th> 
+	</tr> 
+	<tr w3-repeat="customers"> 
+		<td>{{CustomerName}}</td> 
+		<td>{{City}}</td> 
+		<td>{{Country}}</td> 
+	</tr> 
+<script> 
+	w3.getHttpObject("customers.js", myFunction); 
+	
+	function myFunction(myObject) {
+		w3.displayObject("id01", myObject);
+	}
+</script>
+
+
+-- Sample of filling a table with info from id01 Obj
+.. 
+<table id="id01"> 
+	<tr> 
+		<th>Title</th> 
+		<th>Artist</th> 
+		<th>Price</th> 
+	</tr> 
+	<tr w3-repeat="cd"> 
+		<td>{{title}}</td>
+		<td>{{artist}}</td> 
+		<td>{{price}}</td> 
+	</tr> 
+</table> 
+<script> 
+	w3.getHttpObject("cd_catalog.js", myFunction); 
+	
+	function myFunction(myObject) {
+		w3.displayOBject("id01", myObject);
+	}
+</script> 
+
+/* 
+Controllers : Functions that help us to control our data giving it formatting , a calculation hability or any other as that.  
+ Some use cases examples : 
+	* Convert to upper case. 
+	* Convert Currencies. 
+	* Calculte and Summarize. 
+	* Round Values. 
+	* Substitute values. 
+	* Change colors according to values. 
+	
+*/ 
+
+-- Sample of upper Case controller 
+<script> 
+	w3.getHttpObject("customers.js", myFunction); 
+	
+	function myFunction(myObject) {
+		var i; 
+		var myArray = myObject.customers; 
+		for( i = 0; i < myArray.length; i++) {
+			myArray[i]["CustomerName"] = myArray[i]["CustomerName"].toUpperCase(); 
+		}
+		w3.displayObject("id01", myObject); 
+	}
+</script> 
+
+-- Sample of a controller whom calculated the total price of many cd's price. 
+<script> 
+	w3.getHttpObject("cd_catalog.js", myFunction"); 
+	
+	function myFunction(myObject) {
+		var i, total = 0; 
+		var myArray = myObject.cd; 
+		for (i = 0; i < myArray.length; i++) {
+			total += Number(myArray[i].price);
+		}
+		myObject.total = total.toFixed(2); 
+		w3.displayObject("id01", myObject);
+	}
+</script> 
