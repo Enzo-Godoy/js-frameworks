@@ -111,23 +111,25 @@ response.write(outp)
 %> 
 
 
+/* 
+Complete W3.JS API reference 
+hide() >> Hides HTML elements. 
+show() >> Shows HTML elements. 
+toggleShow()  >> Toggles between hiding and showing HTML elements. 
+toggleClass() >> Toggles the class of HTML elements.
+addClass()    >> Adds one or multiple classes to HTML elements.
+addStyle()    >>  Add style to HTML elements.
+removeClass() >> Removes one or multiple classes from HTML elements.
+filterHTML()  >> Filters the display of HTML elements.
+sortHTML() -- >> Sorts the display of HTML elements.
+slideshow() --- >> Make HTML elements display as a slideshow.
+displayObject() >> Displays Javascript objects in HTML.
+includeHTML()   >> Displays HTML in HTML.
+getHttpObject() >> Read JSON data from a server.
+getHttpData()   >> Reads data from a server.
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+##W#.JS Attribute reference 
+{{ }}   --- >> Defines where to display data.
+w3-repeat   >> Defines where to repeat data.
+w3-include-HTML >>  Defines where to include HTML.
