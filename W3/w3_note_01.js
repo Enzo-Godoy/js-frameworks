@@ -38,3 +38,162 @@
 ...
 </table> 
 
+/* 
+
+Slideshow functionality >>> With this we are able to make a transition of different images selected 
+
+generic syntax : 
+w3.slideshow(selector, interval(miliseconds)) 
+
+By default the slide has turned on the action to present images. 
+	In order to prevent the slideshow from starting automatically, we need to set the interval parameters to 0 : 
+	w3.slideshow(".nature", 0); 
+
+	When initiated the slideshow the function returns an object representing the slideshow. 
+	This objects, contains properties and methods, such as next() and previous(). 
+	Any elements can be included in a slideshow. We define it, by using CSS selectors.
+*/
+
+-- Sample of list of images selected for a slideshow 
+.. 
+	<img class="nature" src="img_snowtops.jps"> 
+	<img class="nature" src="img_mountains.jpg"> 
+	<img class="nature" src="img_nature.jpg"> 
+	<script> 
+		w3.slodeshow(".nature");
+	</script> 
+.. 
+
+
+-- Sample of turning on the functionality slideshow 
+var myShow = w3.slideshow(".nature", 0); 
+
+.. 
+	<button onclick="myShow.previous()">previous</button> 
+	<button onclick="myShow.next()">Next</button> 
+	
+	
+-- Sample of a list being included by using a slideshow 
+<h1 class="city">London</h1> 
+<h1 class="city">Paris</h1> 
+<h1 class="city">Tokyo</h1> 
+
+<script> 
+	w3.slideshow(".city"); 
+</script> 
+
+/* 
+Include functionality >> We are able to include slices of our code as kind of "components" by creating them apart
+and including them in our first page. 
+
+Generic sample : 
+	w3.includeHTML() 
+	
+When we include HTML snippets in a web page, we must secure that other functions that depends on the included HTML 
+do not execute before the HTML is properly included. In order to do this we use a callback function as a parameter within the 
+w3.includeHTML call. 
+ E.G 
+	w3.includeHTML(myCallback); 
+
+*/ 
+
+-- Sample of importing multiple-files into one by using HTML syntax. 
+<a href="https://www.w3schools.com/html/">HTML</a><br> 
+<a href="https://w3schools.com/css/">CSS</a><br> 
+<a href="https://w3schools.com/bootstrap/">Bootstrap</a><br> 
+<a href="https://w3schools.com/js/">JavaScript</a><br> 
+<a href="https://w3schools.com/sql/">SQL</a><br> 
+<a href="https://w3schools.com/php/">PHP</a><br> 
+<a href="https://w3schools.comw3css/">W3.CSS</a><br>
+
+-- Sample of including files by using W3 library
+<div w3-include-html="content.html"></div> 
+..
+	<script> 
+		w3.includeHTML(); 
+	</script> 
+
+-- Sample of including files by using w3 library. 
+<!DOCTYPE html> 
+<html> 
+	<script src="/lib/w3.hs"></script> 
+<body> 
+	<div w3-include-html="content.html"></div> 
+	<script> 
+		w3.includeHTML(); 
+	</script> 
+</body> 
+</html> 
+
+-- Sample of including multiple-files by using w3 library. 
+<!DOCTYPE html> 
+<html> 
+	<script src="/lib/w3.js"></script> 
+</body> 
+	<div w3-include-HTML="h1.html"></div> 
+	<div w3-include-HTML="content.html"></div> 
+<script> 
+	w3.includeHTML(); 
+</script> 
+</body> 
+</html> 
+
+-- Sample of adding dependent functions as a callback function 
+<script> 
+	w3.includeHTML(myCallback); 
+	function myCallback() {
+		//Some logic
+	}
+</script> 
+
+
+/* 
+Display data functionality >> We use it in order to render data fram our dataset sources. 
+In order to show up the data in an element we select the element as follow : 
+	w3.displayObject(selector); 
+	
+	And within the elements the data it's rendered in closed brackets : 
+	<div id="id01"> 
+		{{firstName}} {{lastName}} 
+	</div>
+
+	The case of use in the samples that follows are usualy an object wich contains our data as the dataset and a list created by html elements
+	wich would be rendering our elements from the object's data extraction. 
+	Cases to be presented : 
+	* Filling a List. 
+	* Filling Check Boxes. 
+	* Filling Classes. 
+	* Filling a Table. 
+	* Filling a <select> Element. 
+	
+*/ 
+
+-- An object to be use as our dataset referred as DS_OBJ in the following examples.
+var myObject = {"customers":[
+	{"CustomerName": "Alfreds Futterkiste", "City": "Berlin", "Country": "Germany"},
+	{"CustomerName":"Around the Horn", "City": "London", "Country": "UK"},
+	{"CustomerName":"B'S Beverages", "City":"London", "Country": "UK"},
+	{"CustomerName":"Blauer See Delikatessen", "City":"Mannheim", "Country": "Germany"},
+	{"CustomerName":"Bon app'", "City": "Marseille", "Country": "France"},
+	{"CustomerName":"Bottom-Dollar Marketse", "City":"Tsawassen", "Country": "Canada"},
+	{"CustomerName": "Chop-shuey Chine", "City":"Bern", "Country":"Switzerland"},
+]};
+
+
+-- sample of filling a DropDown with DS_OBJ 
+..
+<select id="id01"> 
+	<option w3-repear="customers">{{CustomerName}}</option> 
+</select> 
+<script> 
+	w3.displayObject("id01", myObject); 
+</script> 
+
+-- Sample of filling a List with DS_OBJ 
+..
+<ul id="id01"> 
+	<li w3-repeat="customers">{{CustomerName}}</li> 
+</ul> 
+<script>
+	w3.displayObject("id01", myObject); 
+</script> 
