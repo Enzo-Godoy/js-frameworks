@@ -137,145 +137,43 @@ Sample of an Http Request using the w3 library
 	}
 </script> 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+/* 
+Controllers : Functions that help us to control our data giving it formatting , a calculation hability or any other as that.  
+ Some use cases examples : 
+	* Convert to upper case. 
+	* Convert Currencies. 
+	* Calculte and Summarize. 
+	* Round Values. 
+	* Substitute values. 
+	* Change colors according to values. 
+	
+*/ 
+
+-- Sample of upper Case controller 
+<script> 
+	w3.getHttpObject("customers.js", myFunction); 
+	
+	function myFunction(myObject) {
+		var i; 
+		var myArray = myObject.customers; 
+		for( i = 0; i < myArray.length; i++) {
+			myArray[i]["CustomerName"] = myArray[i]["CustomerName"].toUpperCase(); 
+		}
+		w3.displayObject("id01", myObject); 
+	}
+</script> 
+
+-- Sample of a controller whom calculated the total price of many cd's price. 
+<script> 
+	w3.getHttpObject("cd_catalog.js", myFunction"); 
+	
+	function myFunction(myObject) {
+		var i, total = 0; 
+		var myArray = myObject.cd; 
+		for (i = 0; i < myArray.length; i++) {
+			total += Number(myArray[i].price);
+		}
+		myObject.total = total.toFixed(2); 
+		w3.displayObject("id01", myObject);
+	}
+</script> 
