@@ -150,11 +150,71 @@ http.createServer(function (req, res) {
  
  
  
+/* 
+
+ Nodeemail Module >> A moduke to send emails from 'x' computer.  Install the module by using npm. 
+ ´´ 
+	npm install nodemailer
+´´ 
+
+and include it by using the require('nodemailer') syntax 
+In orders to send it to different address ad one after another, to include html code in the body add the property 'html' after the subject with the code within single quotes.
+
+*/ 
+
+-- Sample of a sending of email to a single receiver
+var nodemailer = require('nodemailer'); 
+var transporter = nodemailer.createTransport({
+	service: 'gmail', 
+	author: {
+		user: 'youremail@gmail.com', 
+		pass: 'yourpass'
+	}
+});
+
+var mailOptions = {
+	from: 'yourmail@gmail.com', 
+	to: 'myfriend@yahoo.com', 
+	subject: 'Sending some email with node', 
+	text: 'Some text'
+};
  
- 
- 
- 
- 
+transporter.sendEmail(mailOptions, function(error, info) {
+	if(error) {console.log(error);}
+	else {console.log('Email response: ' + info.response);}
+}); 
+
+
+-- Sample of a sending of email to a multiple receivers with HTML code on it 
+var nodemailer = require('nodemailer'); 
+var transporter = nodemailer.createTransport({
+	service : 'gmail', 
+	author: {
+		user : 'youremail@gmail.com', 
+		pass : 'yourpass'
+	}
+});
+
+var mailOptions = {
+	from: 'Sender@gmail.com'; 
+	to  : 'myfriend01@gmail.com', 'myfriend02@gmail.com', 
+	subject : ' Sending email with HTML code', 
+	html: '<h1>First Lorem ipsum</h1><p>Random text</p>'
+};
+tranporter.sendEmail(mailOptions, function(error, info){ 
+	if(error) {console.log(erorr);}
+	else {console.log('Email response: ' + info.response);}
+});
+
+
+
+
+
+
+
+
+
+
  
  
  
