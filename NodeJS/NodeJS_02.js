@@ -205,27 +205,3 @@ tranporter.sendEmail(mailOptions, function(error, info){
 	if(error) {console.log(erorr);}
 	else {console.log('Email response: ' + info.response);}
 });
-
-
-
-
-
-
-
-
-
-
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
